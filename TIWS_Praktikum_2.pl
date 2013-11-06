@@ -11,10 +11,15 @@ liste(list(A,Xs)) :- liste(Xs).
 %anz(list(A,Xs),s(N)) : N ist die Anzahl der Listenelemente der Liste list(A,Xs), wobei A ein Datenelement und Xs eine Teilliste ist.
 anz(nil,o).
 anz(list(A,Xs),s(N)) :- liste(Xs), anz(Xs,N).
+
 app(nil,Xs,Xs).
 app(list(X,X1s),Ys,list(X,X2s)):- app(X1s,Ys,X2s).
-präfix(Xs,Ys):-app(Xs,H1s,Ys).
-%infix(Xs,Ys):- app(Xs,Ys,Ys).
+
+präfix(Xs,Ys) :- app(Xs,H1s,Ys).
+
+infix(Xs,Ys) :- präfix(Xs,Ys).
+infix(Xs,list(X,Ys)) :- präfix(Xs,Ys).
+
 postfix(Xs,Ys):-app(H1s,Xs,Ys).
 memb(X,list(X,Ys)) :-  memb(X,Ys).
 
