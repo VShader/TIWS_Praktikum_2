@@ -15,10 +15,10 @@ anz(list(A,Xs),s(N)) :- liste(Xs), anz(Xs,N).
 app(nil,Xs,Xs).
 app(list(X,X1s),Ys,list(X,X2s)):- app(X1s,Ys,X2s).
 
-präfix(Xs,Ys) :- app(Xs,H1s,Ys).
+präfix(Xs,Ys) :- app(Xs,H1s,Ys), H1s==nil.
 
 infix(Xs,Ys) :- präfix(Xs,Ys).
-infix(Xs,list(X,Ys)) :- präfix(Xs,Ys).
+infix(Xs,list(X,Ys)) :- infix(Xs,Ys).%präfix(Xs,Ys).
 
 postfix(Xs,Ys):-app(H1s,Xs,Ys).
 memb(X,list(X,Ys)) :-  memb(X,Ys).
